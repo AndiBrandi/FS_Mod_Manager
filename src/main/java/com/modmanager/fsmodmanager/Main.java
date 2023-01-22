@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Main extends Application {
 
     public static Stage mainStage;
-    public static String stylesheet = String.valueOf(Main.class.getResource("stylesheets/mega_stylesheet.css"));
+    public static String stylesheet = String.valueOf(Main.class.getResource("stylesheets/darker_stylesheet.css"));
 
 
     @Override
