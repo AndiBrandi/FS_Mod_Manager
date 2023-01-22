@@ -1,0 +1,126 @@
+/* Dark Stylesheet by Andreas Brandstetter 5AHEL */
+.root {
+    -fx-background-color: #212121;
+    mainOrange: #ff9800;
+    elementGray: #343434;
+}
+
+.button {
+    /* -fx-font-family: "JetBrains Mono"; */
+    -fx-text-fill: white;
+    -fx-border-color: #925309;
+    -fx-background-color: black;
+    -fx-background-radius: 2px;
+    -fx-border-radius: 2px;
+    -fx-effect: dropshadow(gaussian, rgb(0%,0%,0%),5, 0, 2,2);
+}
+
+.label {
+    -fx-font-family: "Calibri";
+    -fx-text-fill: white;
+
+}
+
+.list-view {
+    -fx-background-color: elementGray;
+    -fx-border-color: #181818;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+}
+.list-cell{
+    -fx-background-color: elementGray;
+    -fx-text-fill: white;
+}
+.list-cell:selected{
+    -fx-background-color: mainOrange;
+}
+
+.menu-item {
+    -fx-background-color: #181818;
+}
+.menu-item:hover {
+    -fx-background-color: mainOrange;
+}
+
+.context-menu {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.button:hover {
+    -fx-background-color: mainOrange;
+    -fx-border-color: #bd760c;
+    -fx-cursor: hand;
+}
+
+.button:pressed {
+    -fx-background-color: #bf770f;
+    -fx-border-color: #97600c;
+}
+
+.text-area {
+    -fx-background-color: elementGray;
+    -fx-border-color: transparent;
+    -fx-background-radius: 3px;
+    -fx-border-radius: 3px;
+    -fx-text-fill: white;
+}
+
+.text-area.content {
+    -fx-background-color: elementGray;
+    -fx-border-color: mainOrange;
+    -fx-background-radius: 3px;
+    -fx-border-radius: 3px;
+}
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+.text-field {
+    -fx-background-color: elementGray;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-border-color: #181818;
+    -fx-text-fill: white;
+}
+
+.header_label {
+    -fx-font-size: 18;
+    -fx-alignment: center;
+}
+
+.info_labels {
+    -fx-font-family: Arial;
+    -fx-text-fill: linear-gradient(from 25% 25% to 100% 100%, #e51414, #c81bd4)
+}
+
+.close_Button:hover {
+    -fx-background-color: red;
+    -fx-border-color: mainOrange;
+}
+.close_Button:pressed {
+    -fx-background-color: #b40505;
+    -fx-border-color: #b40505;
+}
+
+.combo-box{
+    -fx-text-fill: white;
+    -fx-border-color: #925309;
+    -fx-background-color: black;
+    -fx-background-radius: 2px;
+    -fx-border-radius: 2px;
+    -fx-effect: dropshadow(gaussian, rgb(0%,0%,0%),5, 0, 0,2);
+
+}
+
+.HeaderLabel {
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+
+}

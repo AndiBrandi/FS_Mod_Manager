@@ -1,0 +1,112 @@
+/* Light Stylesheet by Andreas Brandstetter 5AHEL */
+.root {
+    -fx-background-color: white;
+    standardBlue: #00baff;
+}
+
+.button {
+    /*-fx-font-family: "JetBrains Mono";*/
+    -fx-text-fill: black;
+    -fx-border-color: #1492ba;
+    -fx-background-color: standardBlue;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+    -fx-cursor: hand;
+
+}
+
+.label {
+    -fx-font-family: "Calibri";
+    -fx-text-fill: black;
+    -fx-font-size: 13;
+    -fx-font-weight: bold;
+}
+
+.list-view {
+    -fx-background-color: #bdbdbd;
+    -fx-border-color: #616161;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+}
+.list-cell{
+    -fx-background-color: #bdbdbd;
+    -fx-text-fill: black;
+}
+.list-cell:selected{
+    -fx-background-color: standardBlue;
+}
+
+.button:hover {
+    -fx-background-color: #21c0ff;
+    -fx-border-color: #21c0ff;
+}
+.button:pressed {
+    -fx-background-color: #087193;
+    -fx-border-color: #087193;
+}
+
+.text-area {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-text-fill: white;
+    /*-fx-start-margin: 5px;*/
+    /*-fx-end-margin: 5px;*/
+
+}
+
+.text-area .content {
+    -fx-background-color: #bdbdbd;
+    -fx-border-color: #616161;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+}
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+.text-field {
+    -fx-background-color: #bdbdbd;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-border-color: #616161;
+    -fx-text-fill: black;
+}
+
+.header_label {
+
+    -fx-font-size: 18;
+-fx-alignment: center;
+}
+
+.info_labels {
+    -fx-font-family: Arial;
+    -fx-text-fill: linear-gradient(from 25% 25% to 100% 100%, #e51414, #c81bd4)
+}
+
+.close_Button:hover {
+    -fx-background-color: red;
+    -fx-border-color: red;
+}
+
+.combo-box{
+    -fx-text-fill: white;
+    -fx-border-color: standardBlue;
+    -fx-background-color: white;
+    -fx-background-radius: 2px;
+    -fx-border-radius: 2px;
+    -fx-effect: dropshadow(gaussian, rgb(0%,0%,0%),5, 0, 0,2);
+
+}
+
+.HeaderLabel {
+    -fx-font-size: 15;
+
+}
