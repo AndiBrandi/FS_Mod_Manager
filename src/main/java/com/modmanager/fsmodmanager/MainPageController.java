@@ -59,7 +59,6 @@ public class MainPageController {
         gameDirTextField.setText(selectedDir.getAbsolutePath());
         gameDirectory = gameDirTextField.getText();
 
-
     }
 
 
@@ -80,8 +79,8 @@ public class MainPageController {
             stage.setResizable(false);
             stage.setScene(scene);
             stage.setTitle(title);
-
             stage.show();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
