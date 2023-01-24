@@ -10,9 +10,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import org.xml.sax.XMLReader;
+import org.xml.sax.helpers.XMLFilterImpl;
 
+import javax.xml.parsers.SAXParser;
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.OutputStreamWriter;
 import java.util.Properties;
 
 public class MainPageController {
@@ -26,6 +32,8 @@ public class MainPageController {
     public TextField gameDirTextField;
 
     public static String gameDirectory;
+    public TextField searchField;
+    public Button addProfileButton;
 
     public void initialize() {
 
@@ -61,6 +69,10 @@ public class MainPageController {
 
     }
 
+    public void addProfileButtonClicked(ActionEvent actionEvent) {
+        
+
+    }
 
     /**
      * Öffnet FXML Seiten nach ihrem Namen mit jeweiligem Titel
@@ -88,6 +100,8 @@ public class MainPageController {
 
     }
 
+
+
     public static String getGameDirectory() {
         return gameDirectory;
     }
@@ -95,5 +109,4 @@ public class MainPageController {
     public static void setGameDirectory(String gameDirectory) {
         MainPageController.gameDirectory = gameDirectory;
     }
-
 }
