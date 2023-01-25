@@ -10,7 +10,7 @@ import java.util.zip.ZipInputStream;
 
 
 public class VersionReader {
-    public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException {
+    public static void main(String[] args) {
 
         //System.out.println(getVersion("C:/Users/andre/Documents/My Games/FarmingSimulator2022/mods/FS22_WestBridgeHills22.zip"));                                                             //Just for Testing
     }

@@ -7,18 +7,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.XMLFilterImpl;
 
-import javax.xml.parsers.SAXParser;
-import javax.xml.stream.XMLOutputFactory;
-import javax.xml.stream.XMLStreamWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.OutputStreamWriter;
 import java.util.Properties;
 
 public class MainPageController {
@@ -44,7 +37,7 @@ public class MainPageController {
             gameDirTextField.setText(prop.getProperty("gameDirectory"));
             setGameDirectory(prop.getProperty("gameDirectory"));
 
-        }catch (Exception e) {
+        } catch (Exception e) {
 
         }
 
@@ -59,7 +52,7 @@ public class MainPageController {
 
     public void settingsButtonPressed(ActionEvent actionEvent) {
 
-        uiLoader("settingsPage.fxml","Settings");
+        uiLoader("settingsPage.fxml", "Settings");
     }
 
     public void browseClicked(ActionEvent actionEvent) {
@@ -70,7 +63,8 @@ public class MainPageController {
     }
 
     public void addProfileButtonClicked(ActionEvent actionEvent) {
-        
+
+
 
     }
 
@@ -99,7 +93,6 @@ public class MainPageController {
 
 
     }
-
 
 
     public static String getGameDirectory() {
