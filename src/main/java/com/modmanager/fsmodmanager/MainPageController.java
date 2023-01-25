@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
@@ -26,6 +25,8 @@ public class MainPageController {
     public TextField gameDirTextField;
 
     public static String gameDirectory;
+    public TextField searchField;
+    public Button addProfileButton;
 
     public void initialize() {
 
@@ -36,7 +37,7 @@ public class MainPageController {
             gameDirTextField.setText(prop.getProperty("gameDirectory"));
             setGameDirectory(prop.getProperty("gameDirectory"));
 
-        }catch (Exception e) {
+        } catch (Exception e) {
 
         }
 
@@ -51,7 +52,7 @@ public class MainPageController {
 
     public void settingsButtonPressed(ActionEvent actionEvent) {
 
-        uiLoader("settingsPage.fxml","Settings");
+        uiLoader("settingsPage.fxml", "Settings");
     }
 
     public void browseClicked(ActionEvent actionEvent) {
@@ -61,6 +62,11 @@ public class MainPageController {
 
     }
 
+    public void addProfileButtonClicked(ActionEvent actionEvent) {
+
+
+
+    }
 
     /**
      * Öffnet FXML Seiten nach ihrem Namen mit jeweiligem Titel
@@ -88,6 +94,7 @@ public class MainPageController {
 
     }
 
+
     public static String getGameDirectory() {
         return gameDirectory;
     }
@@ -95,5 +102,4 @@ public class MainPageController {
     public static void setGameDirectory(String gameDirectory) {
         MainPageController.gameDirectory = gameDirectory;
     }
-
 }
