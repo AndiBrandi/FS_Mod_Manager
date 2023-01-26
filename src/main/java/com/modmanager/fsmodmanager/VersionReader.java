@@ -26,7 +26,6 @@ public class VersionReader {
         }
 
 
-        ZipInputStream zis = new ZipInputStream(bfis);
         ZipFile zif = null;
         InputStream zifInputStream = null;
 
@@ -40,8 +39,6 @@ public class VersionReader {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        ZipEntry zipEntry;
 
         //int numEntry = 0;                                                                                                                                                                 //Needed for Stats
 
@@ -69,10 +66,14 @@ public class VersionReader {
         teil1 = teil1.substring(teil1.indexOf(">") + 1);
 
         try {
-            zis.close();
+            zif.close();
+            bos.close();
+            bfis.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+
         return teil1;
     }
     /* Would Work if the modDesc isnt in a zip File

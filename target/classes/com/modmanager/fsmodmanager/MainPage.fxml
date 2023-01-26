@@ -38,11 +38,14 @@
                         <Insets />
                      </HBox.margin>
                   </TextField>
-                  <Button fx:id="addProfileButton" mnemonicParsing="false" onAction="#addProfileButtonClicked" prefHeight="26.0" prefWidth="35.0" text="+" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="addProfileButton" mnemonicParsing="false" onAction="#newProfileClicked" prefHeight="26.0" prefWidth="35.0" text="+" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
-              <ListView fx:id="modpackList" prefHeight="425.0" prefWidth="182.0" />
+              <ListView fx:id="modPackLV" onMouseClicked="#modPackSelected" prefHeight="425.0" prefWidth="182.0" />
+            <Button fx:id="loadProfilesButton" alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#loadProfilesFromDisk" prefHeight="26.0" prefWidth="160.0" text="Load Profiles from Disk" />
          </children>
       </VBox>
+      <ListView fx:id="modsLV" layoutX="247.0" layoutY="122.0" prefHeight="349.0" prefWidth="469.0" />
+      <Button fx:id="loadProfileButton" layoutX="14.0" layoutY="70.0" mnemonicParsing="false" onAction="#loadProfileIntoGame" text="Load Profile" />
     </children>
 </AnchorPane>

@@ -7,8 +7,12 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.modmanager.fsmodmanager.ModListPageController">
    <children>
-      <ListView fx:id="modListView" layoutX="80.0" layoutY="57.0" prefHeight="285.0" prefWidth="442.0" />
+      <ListView fx:id="modListView" layoutX="80.0" layoutY="57.0" prefHeight="286.0" prefWidth="218.0" />
       <Button fx:id="refreshButton" layoutX="466.0" layoutY="25.0" mnemonicParsing="false" onAction="#refreshPressed" text="Refresh" />
-      <Label fx:id="countLabel" layoutX="80.0" layoutY="29.0" text="Total count:" />
+      <Label fx:id="countLabel" layoutX="80.0" layoutY="354.0" prefHeight="18.0" prefWidth="56.0" text="Total:" />
+      <ListView fx:id="inactiveModListView" layoutX="303.0" layoutY="57.0" prefHeight="286.0" prefWidth="218.0" />
+      <Label fx:id="inactiveCountLabel" layoutX="303.0" layoutY="354.0" prefHeight="18.0" prefWidth="56.0" text="Total:" />
+      <Label layoutX="80.0" layoutY="29.0" text="Active mods" />
+      <Label layoutX="303.0" layoutY="29.0" text="Inactive mods" />
    </children>
 </AnchorPane>

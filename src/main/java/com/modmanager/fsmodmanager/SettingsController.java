@@ -15,9 +15,9 @@ public class SettingsController {
     public void setupClicked(ActionEvent actionEvent) {
 
         try {
-            new File(MainPageController.getGameDirectory() + "/fs_mod_manager").mkdirs();
-            new File(MainPageController.getGameDirectory() + "/fs_mod_manager/config.properties").createNewFile();
-            new File(MainPageController.getGameDirectory() + "/mods_unused").mkdirs();
+            new File(MainPageController.getGameDirectory().getPath() + "/fs_mod_manager/config.properties").createNewFile();
+            new File(MainPageController.getGameDirectory().getPath() + "/fs_mod_manager").mkdirs();
+            new File(MainPageController.getGameDirectory().getPath() + "/mods_inactive").mkdirs();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -27,13 +27,13 @@ public class SettingsController {
         Properties properties = new Properties();
 
         try {
-            FileInputStream inFile = new FileInputStream(MainPageController.getGameDirectory() + "/fs_mod_manager/config.properties");
-            FileOutputStream outFile = new FileOutputStream(MainPageController.getGameDirectory() + "/fs_mod_manager/config.properties");
+            FileInputStream inFile = new FileInputStream(MainPageController.getGameDirectory().getPath() + "/fs_mod_manager/config.properties");
+            FileOutputStream outFile = new FileOutputStream(MainPageController.getGameDirectory().getPath() + "/fs_mod_manager/config.properties");
 
             properties.load(inFile);
             inFile.close();
 
-            properties.setProperty("gameDirectory", MainPageController.getGameDirectory());
+            properties.setProperty("gameDirectory", MainPageController.getGameDirectory().getPath());
             properties.store(outFile, null);
 
 

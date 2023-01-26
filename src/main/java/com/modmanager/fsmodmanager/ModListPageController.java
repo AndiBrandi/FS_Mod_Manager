@@ -1,26 +1,23 @@
 package com.modmanager.fsmodmanager;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
-import java.io.IOException;
 
 
 public class ModListPageController {
 
-    public ListView modListView;
+    public ListView<String> modListView;
+    public ListView<String> inactiveModListView;
     public Button refreshButton;
+    public Label countLabel;
+    public Label inactiveCountLabel;
 
     public File modsFolder;
-    public Label countLabel;
+    public File inactiveModsFolder;
 
     public void initialize() {
         refresh();
@@ -34,14 +31,23 @@ public class ModListPageController {
     /**
      * refresh reads all mods in the modsfolder and count them
      */
-    public void refresh(){
+    public void refresh() {
 
-        modsFolder = new File(MainPageController.getGameDirectory() + "\\mods");
+        modListView.getItems().clear();
+        inactiveModListView.getItems().clear();
+
+        modsFolder = new File(MainPageController.getGameDirectory().getPath() + "\\mods");
+        inactiveModsFolder = new File(MainPageController.getGameDirectory().getPath() + "\\mods_inactive");
         File[] mods = modsFolder.listFiles();
+        File[] inactiveMods = inactiveModsFolder.listFiles();
 
         for (File f : mods) {
-                modListView.getItems().add(f.getName() + " Version: " + VersionReader.getVersion(f.getPath()));
+            modListView.getItems().add(f.getName() + " Version: " + VersionReader.getVersion(f.getPath()));
+        }
+        for (File f : inactiveMods) {
+            inactiveModListView.getItems().add(f.getName() + " Version: " + VersionReader.getVersion(f.getPath()));
         }
         countLabel.setText(String.valueOf(modsFolder.listFiles().length));
+        inactiveCountLabel.setText(String.valueOf(inactiveModsFolder.listFiles().length));
     }
 }
