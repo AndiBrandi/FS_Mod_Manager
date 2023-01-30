@@ -14,6 +14,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
@@ -30,8 +31,7 @@ public class ModPackManager {
     static DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
 
-    public static void createNewProfile(ArrayList<Mod> mods, String modPackName) {
-
+    public static void createNewProfile(ArrayList<String> mods, String profileName) {
 
         try {
             DocumentBuilder documentBuilder = factory.newDocumentBuilder();
@@ -42,14 +42,23 @@ public class ModPackManager {
 
 //            doc.createElement("modpack")
 
+            //re-add existing profiles
+            NodeList nodes = getElementsFromXML(MainPageController.getProfilesXmlFile());
+            for (int j = 0; j <= nodes.getLength() -1; ++j) {
+                Element e = doc.createElement("modpack");
+                e.setAttribute("name", nodes.item(j).getAttributes().getNamedItem("name").getTextContent());
+                e.setTextContent(nodes.item(j).getTextContent());
+                rootElement.appendChild(e);
+            }
 
-            rootElement.appendChild(buildModPackAsElement(doc, mods, modPackName));
+
+            rootElement.appendChild(buildModPackAsElement(doc, mods, profileName));
 
 // Schreibt komplettes document in xml datei
-//            try (FileOutputStream output = new FileOutputStream(MainPageController.getGameDirectory() + "\\fs_mod_manager\\profiles.xml")) {
-//                writeXml(doc, output);
-//            } catch (IOException | TransformerException e) {
-//            }
+            try (FileOutputStream output = new FileOutputStream(MainPageController.getGameDirectory() + "\\fs_mod_manager\\profiles.xml")) {
+                writeXml(doc, output);
+            } catch (IOException | TransformerException e) {
+            }
 
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
@@ -96,6 +105,24 @@ public class ModPackManager {
             }
         }
 
+
+    }
+
+    private static NodeList getElementsFromXML(File xmlFile) {
+
+        Document doc = null;
+        DocumentBuilder docBuilder = null;
+        try {
+
+            docBuilder = factory.newDocumentBuilder();
+            doc = docBuilder.parse(xmlFile);
+            doc.getDocumentElement().normalize();
+
+        } catch (ParserConfigurationException | SAXException | IOException e) {
+            e.printStackTrace();
+        }
+
+        return doc.getElementsByTagName("modpack");
 
     }
 
@@ -148,13 +175,13 @@ public class ModPackManager {
      * @param name
      * @return
      */
-    private static Element buildModPackAsElement(Document doc, ArrayList<Mod> mods, String name) {
+    private static Element buildModPackAsElement(Document doc, ArrayList<String> mods, String name) {
 
 
         StringBuilder builder = new StringBuilder("");
         //iterate through all mods and add them to the string
-        for (Mod f : mods) {
-            builder.append(f.getName() + ";");
+        for (String s : mods) {
+            builder.append(s + ";");
         }
 
         builder.deleteCharAt(builder.lastIndexOf(";")); //delete the ; after the last fileName to avoid adding an empty mod
@@ -167,8 +194,7 @@ public class ModPackManager {
     }
 
 
-    private static void writeXml(Document doc, OutputStream output)
-            throws TransformerException {
+    private static void writeXml(Document doc, OutputStream output) throws TransformerException {
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();

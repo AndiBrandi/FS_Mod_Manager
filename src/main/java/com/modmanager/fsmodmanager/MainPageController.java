@@ -37,6 +37,7 @@ public class MainPageController {
     public static File gameDirectory;
     public static File activeModsFolder;
     public static File inactiveModsFolder;
+    public static File profilesXmlFile;
     public static HashMap<String, ArrayList<Mod>> modpacks = new HashMap<>();
     public Button loadProfileButton;
 
@@ -52,6 +53,7 @@ public class MainPageController {
             gameDirectory = new File(gameDirectory.getPath());
             activeModsFolder = new File(gameDirectory.getPath() + "\\mods");
             inactiveModsFolder = new File(gameDirectory.getPath() + "\\mods_inactive");
+            profilesXmlFile = new File(gameDirectory.getPath() + "\\fs_mod_manager\\profiles.xml");
 
 
         } catch (Exception e) {
@@ -181,5 +183,7 @@ public class MainPageController {
         return inactiveModsFolder;
     }
 
-
+    public static File getProfilesXmlFile() {
+        return profilesXmlFile;
+    }
 }

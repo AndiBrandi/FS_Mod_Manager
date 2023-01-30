@@ -11,6 +11,6 @@
       <Button onAction="#createProfileClicked" fx:id="createProfileButton" layoutX="136.0" layoutY="236.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="197.0" text="Create new Profile" />
       <ListView fx:id="modsLV" layoutX="212.0" layoutY="14.0" prefHeight="200.0" prefWidth="242.0" />
       <Label layoutX="14.0" layoutY="21.0" text="Profile name:" />
-      <TextField fx:id="profileNameLabel" layoutX="14.0" layoutY="39.0" prefHeight="26.0" prefWidth="180.0" />
+      <TextField fx:id="profileNameTF" layoutX="14.0" layoutY="39.0" prefHeight="26.0" prefWidth="180.0" />
    </children>
 </AnchorPane>
