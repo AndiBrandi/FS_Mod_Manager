@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<profiles>
+    <modpack name="Flo">
+        FS22_amazoneD9.zip;FS22_AM_MegaMulcher.zip;FS22_animatedShedPack.zip;FS22_Buehrer_6135.zip;FS22_CabView.zip;FS22_Chipper_ITALIA_Emilia_Ext.zip;FS22_Courseplay.zip;FS22_Crane_ITALIA_Emilia_Ext.zip
+    </modpack>
+    <modpack name="AutoDrive">FS22_AutoDrive.zip</modpack>
+    <modpack name="Italia">FS22_ITALIA_Emilia_Ext_MP.zip</modpack>
+    <modpack name="Towbar">FS22_TowBar.zip</modpack>
+    <modpack name="lol">FS22_AutoDrive.zip;FS22_CabView.zip;FS22_Courseplay.zip</modpack>
+</profiles>

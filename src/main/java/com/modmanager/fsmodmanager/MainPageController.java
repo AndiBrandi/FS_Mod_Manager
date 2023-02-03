@@ -8,8 +8,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
@@ -22,6 +24,7 @@ import java.util.Properties;
 public class MainPageController {
 
 
+    public AnchorPane anchorPane;
     public DirectoryChooser directoryChooser = new DirectoryChooser();
     public ListView<String> modPackLV;
     public ListView<Mod> modsLV;
@@ -33,13 +36,16 @@ public class MainPageController {
     public Button addProfileButton;
     public Button loadProfilesButton;
 
-//    private static String gameDirectoryPath;
+    public MenuItem deleteProfileItem;
+
+    //    private static String gameDirectoryPath;
     public static File gameDirectory;
     public static File activeModsFolder;
     public static File inactiveModsFolder;
     public static File profilesXmlFile;
     public static HashMap<String, ArrayList<Mod>> modpacks = new HashMap<>();
     public Button loadProfileButton;
+
 
     public void initialize() {
 
@@ -75,6 +81,7 @@ public class MainPageController {
     }
 
     public void browseClicked(ActionEvent actionEvent) {
+
         File selectedDir = directoryChooser.showDialog(Main.mainStage);
         gameDirTextField.setText(selectedDir.getAbsolutePath());
         setGameDirectory(selectedDir);
@@ -83,7 +90,7 @@ public class MainPageController {
 
     public void newProfileClicked(ActionEvent actionEvent) {
 
-        uiLoader("newProfilePage.fxml","New Profile");
+        uiLoader("newProfilePage.fxml", "New Profile");
 
     }
 
@@ -93,19 +100,9 @@ public class MainPageController {
 
     }
 
-    public void loadProfilesFromDisk(ActionEvent actionEvent) {
+    public void loadProfilesFromDisk() {
 
-        ObservableList modList = FXCollections.observableArrayList();
-//        File modsFolder = new File(MainPageController.getGameDirectory() + "\\mods");
-//        File[] mods = modsFolder.listFiles();
-//        ArrayList<File> array = new ArrayList();
-//
-//        for (File f : mods) {
-//            array.add(f);
-//        }
-
-
-//        profile.createNewProfile(array, "Flo");
+        ObservableList modList = FXCollections.observableArrayList();               //temp variable weil man aus einer Hashmap nicht direkt die profile in die Listview laden kann.
         modpacks = ModPackManager.getModpacksFromXML(new File(MainPageController.getGameDirectory().getPath() + "\\fs_mod_manager\\profiles.xml"));
 
         for (String key : modpacks.keySet()) {
@@ -115,6 +112,7 @@ public class MainPageController {
         modPackLV.setItems(modList);
 
     }
+
 
     public void modPackSelected(MouseEvent mouseEvent) {
 
@@ -127,6 +125,16 @@ public class MainPageController {
         }
         modsLV.setItems(temp);
 
+
+    }
+
+    public void deleteProfileItemClicked(ActionEvent actionEvent) {
+
+        String selected = modPackLV.getSelectionModel().getSelectedItem();
+        ModPackManager.deleteProfile(selected);
+        System.out.println("successfully deleted: " + selected);
+
+        loadProfilesFromDisk();
 
     }
 
@@ -186,4 +194,6 @@ public class MainPageController {
     public static File getProfilesXmlFile() {
         return profilesXmlFile;
     }
+
+
 }

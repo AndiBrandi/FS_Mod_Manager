@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="277.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.modmanager.fsmodmanager.NewProfileController">
+<AnchorPane fx:id="anchorPane" prefHeight="277.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.modmanager.fsmodmanager.NewProfileController">
    <children>
       <Button onAction="#createProfileClicked" fx:id="createProfileButton" layoutX="136.0" layoutY="236.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="197.0" text="Create new Profile" />
       <ListView fx:id="modsLV" layoutX="212.0" layoutY="14.0" prefHeight="200.0" prefWidth="242.0" />

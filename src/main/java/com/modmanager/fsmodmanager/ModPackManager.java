@@ -30,7 +30,13 @@ public class ModPackManager {
 
     static DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
-
+    /**
+     * erstellt neues <modpack></modpack> Element das den namen als Attribut, und die Mods als Value hat
+     * <modpack name="Attribut">Value</modpack>
+     *
+     * @param mods
+     * @param profileName
+     */
     public static void createNewProfile(ArrayList<String> mods, String profileName) {
 
         try {
@@ -44,7 +50,7 @@ public class ModPackManager {
 
             //re-add existing profiles
             NodeList nodes = getElementsFromXML(MainPageController.getProfilesXmlFile());
-            for (int j = 0; j <= nodes.getLength() -1; ++j) {
+            for (int j = 0; j <= nodes.getLength() - 1; ++j) {                                      //for schleife hängt alle bereits in der datei existierenden Modpacks wieder an
                 Element e = doc.createElement("modpack");
                 e.setAttribute("name", nodes.item(j).getAttributes().getNamedItem("name").getTextContent());
                 e.setTextContent(nodes.item(j).getTextContent());
@@ -52,7 +58,7 @@ public class ModPackManager {
             }
 
 
-            rootElement.appendChild(buildModPackAsElement(doc, mods, profileName));
+            rootElement.appendChild(buildModPackAsElement(doc, mods, profileName));                 //hängt neues <modpack> Element zu den bereits existierenden modpacks dazu
 
 // Schreibt komplettes document in xml datei
             try (FileOutputStream output = new FileOutputStream(MainPageController.getGameDirectory() + "\\fs_mod_manager\\profiles.xml")) {
@@ -65,6 +71,39 @@ public class ModPackManager {
         }
 
     }
+
+    public static void deleteProfile(String profileName) {
+
+        try {
+            DocumentBuilder documentBuilder = factory.newDocumentBuilder();                                                 //wird für die nächste Zeile gebraucht
+            Document doc = documentBuilder.newDocument();                                                                   //neues XML Dokument erstellen
+            Element rootElement = doc.createElement("profiles");                                                    //Hauptelement <profiles> erstellen
+            doc.appendChild(rootElement);                                                                                   //Hauptelement ans XML Dokument anhängen
+
+            //re-add existing profiles except the one to delete
+            NodeList nodes = getElementsFromXML(MainPageController.getProfilesXmlFile());                                   //NodeList ist eine Liste an XML elementen, wie z.B unser <modpack> element
+            for (int j = 0; j <= nodes.getLength() - 1; ++j) {                                                              // Die for schleife durchläuft alle <modpack> elemente im XML file
+                if(!nodes.item(j).getAttributes().getNamedItem("name").getTextContent().equals(profileName)) {              //in diesem if wird jedes XML Element (jedes Profil) wieder an das dokument angehängt
+                    Element e = doc.createElement("modpack");                                                       //      ausser das zu löschende profil
+                    e.setAttribute("name", nodes.item(j).getAttributes().getNamedItem("name").getTextContent());
+                    e.setTextContent(nodes.item(j).getTextContent());
+                    rootElement.appendChild(e);
+                }
+            }
+
+
+
+            try (FileOutputStream output = new FileOutputStream(MainPageController.getGameDirectory() + "\\fs_mod_manager\\profiles.xml")) {        //try with resources (ka. hobs nd zaumbrocht dass i den fileStream nachher wieder schließ xD)
+                writeXml(doc, output);                                                                                       // Schreibt komplettes document in xml datei
+            } catch (IOException | TransformerException e) {
+            }
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     public static void loadProfile(String profileName) {
 
@@ -143,20 +182,18 @@ public class ModPackManager {
             doc.getDocumentElement().normalize();
 
 
-            NodeList list = doc.getElementsByTagName("modpack");
+            NodeList list = doc.getElementsByTagName("modpack");                        //gettet eine Liste aller <modpack> Elemente im profiles.xml file
 
             for (int j = 0; j < list.getLength(); ++j) {
-                ArrayList<Mod> mods = new ArrayList<>();
-                profileName = list.item(j).getAttributes().getNamedItem("name").getTextContent();
+                ArrayList<Mod> mods = new ArrayList<>();                                                    //Arraylist die jeden Moddatei-namen eines Modpacks beinhaltet
+                profileName = list.item(j).getAttributes().getNamedItem("name").getTextContent();           //lest den namen des modpacks
 
-                String[] fileNames = list.item(j).getTextContent().split(";");
-//                String[] actualMods = Arrays.copyOf(fileNames, fileNames.length -1);
-
+                String[] fileNames = list.item(j).getTextContent().split(";");                        //teilt den gesamten string auf in Array mit allen Moddatei-namen
 
                 for (String s : fileNames) {
-                    mods.add(new Mod(MainPageController.getInactiveModsFolder().getPath() + "\\" + s));
+                    mods.add(new Mod(MainPageController.getInactiveModsFolder().getPath() + "\\" + s));         //fügt alle Mods zur Arraylist hinzu
                 }
-                modpacks.put(profileName, mods);
+                modpacks.put(profileName, mods);                            //erstellt neuen eintrag in der Hashmap. Key = name des modpacks, Value = Arraylist mit Moddatei-namen
 
 
             }
@@ -180,15 +217,15 @@ public class ModPackManager {
 
         StringBuilder builder = new StringBuilder("");
         //iterate through all mods and add them to the string
-        for (String s : mods) {
-            builder.append(s + ";");
+        for (String s : mods) {                                         //für jeden Mod der im neuen profil dabei ist wird die Schleife durchlaufen
+            builder.append(s + ";");                                    //baut einen String zusammen sodass er wiefolgt aussieht: "Moddatei1;Moddatei2;Moddatei3..."
         }
 
         builder.deleteCharAt(builder.lastIndexOf(";")); //delete the ; after the last fileName to avoid adding an empty mod
 
-        Element element = doc.createElement("modpack");
-        element.setAttribute("name", name);
-        element.appendChild(doc.createTextNode(builder.toString()));
+        Element element = doc.createElement("modpack");                                         //Erstellt neues <modpack> Element
+        element.setAttribute("name", name);                                                       //gibt dem Element einen namen damit es identifiziert werden kann
+        element.appendChild(doc.createTextNode(builder.toString()));                                    //hängt zwischen die beiden Klammern <modapck> und </modpack> die Liste der Moddatei namen in form von Strings
 
         return element;
     }

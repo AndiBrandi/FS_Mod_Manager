@@ -1,16 +1,18 @@
 package com.modmanager.fsmodmanager;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class NewProfileController {
+    public AnchorPane anchorPane;
     public Button createProfileButton;
     public ListView<String> modsLV;
     public TextField profileNameTF;
@@ -39,7 +41,7 @@ public class NewProfileController {
 
     public void createProfileClicked(ActionEvent actionEvent) {
 
-        if(!profileNameTF.getText().isEmpty() && profileNameTF.getText().length() >= 3) {
+        if (!profileNameTF.getText().isEmpty() && profileNameTF.getText().length() >= 3) {
             ArrayList<String> selected = new ArrayList<>();
             selected.addAll(modsLV.getSelectionModel().getSelectedItems());
 
@@ -51,5 +53,8 @@ public class NewProfileController {
             alert.setContentText("Type a name with atlest 3 letters");
             alert.show();
         }
+        Stage stage = (Stage) anchorPane.getScene().getWindow();
+        stage.close();
     }
+
 }
