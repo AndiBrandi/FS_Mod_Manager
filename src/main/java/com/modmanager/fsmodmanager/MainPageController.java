@@ -42,7 +42,7 @@ public class MainPageController {
     public static File gameDirectory;
     public static File activeModsFolder;
     public static File inactiveModsFolder;
-    public static File profilesXmlFile;
+    public static File profilesPropertiesFile;
     public static HashMap<String, ArrayList<Mod>> modpacks = new HashMap<>();
     public Button loadProfileButton;
 
@@ -59,7 +59,7 @@ public class MainPageController {
             gameDirectory = new File(gameDirectory.getPath());
             activeModsFolder = new File(gameDirectory.getPath() + "\\mods");
             inactiveModsFolder = new File(gameDirectory.getPath() + "\\mods_inactive");
-            profilesXmlFile = new File(gameDirectory.getPath() + "\\fs_mod_manager\\profiles.xml");
+            profilesPropertiesFile = new File(gameDirectory.getPath() + "\\fs_mod_manager\\profiles.xml");
 
 
         } catch (Exception e) {
@@ -96,14 +96,14 @@ public class MainPageController {
 
     public void loadProfileIntoGame(ActionEvent actionEvent) {
 
-        ModPackManager.loadProfile(modPackLV.getSelectionModel().getSelectedItem());          //just for testing
+        ModPackManagerXML.loadProfile(modPackLV.getSelectionModel().getSelectedItem());          //just for testing
 
     }
 
     public void loadProfilesFromDisk() {
 
         ObservableList modList = FXCollections.observableArrayList();               //temp variable weil man aus einer Hashmap nicht direkt die profile in die Listview laden kann.
-        modpacks = ModPackManager.getModpacksFromXML(new File(MainPageController.getGameDirectory().getPath() + "\\fs_mod_manager\\profiles.xml"));
+//        modpacks = ModPackManagerXML.getModpacksFromXML(new File(MainPageController.getGameDirectory().getPath() + "\\fs_mod_manager\\profiles.xml"));
 
         for (String key : modpacks.keySet()) {
             modList.add(key);
@@ -131,7 +131,7 @@ public class MainPageController {
     public void deleteProfileItemClicked(ActionEvent actionEvent) {
 
         String selected = modPackLV.getSelectionModel().getSelectedItem();
-        ModPackManager.deleteProfile(selected);
+//        ModPackManagerXML.deleteProfile(selected);
         System.out.println("successfully deleted: " + selected);
 
         loadProfilesFromDisk();
@@ -191,8 +191,8 @@ public class MainPageController {
         return inactiveModsFolder;
     }
 
-    public static File getProfilesXmlFile() {
-        return profilesXmlFile;
+    public static File getProfilesPropertiesFile() {
+        return profilesPropertiesFile;
     }
 
 

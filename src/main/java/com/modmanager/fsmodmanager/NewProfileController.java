@@ -1,6 +1,5 @@
 package com.modmanager.fsmodmanager;
 
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,7 +44,7 @@ public class NewProfileController {
             ArrayList<String> selected = new ArrayList<>();
             selected.addAll(modsLV.getSelectionModel().getSelectedItems());
 
-            ModPackManager.createNewProfile(selected, profileNameTF.getText());
+            ModPackManagerXML.createNewProfile(selected, profileNameTF.getText());                     //ersetzt durch ModpackManagerV2
             System.out.println("Successfully created profile: " + profileNameTF.getText());
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);

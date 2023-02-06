@@ -24,9 +24,10 @@ import java.util.HashMap;
 
 
 /**
- *
+ * ModPack Profile Manager that uses XML format to store profiles
+ * @deprecated Using ModpackManagerV2 instead
  */
-public class ModPackManager {
+public class ModPackManagerXML {
 
     static DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
@@ -49,7 +50,7 @@ public class ModPackManager {
 //            doc.createElement("modpack")
 
             //re-add existing profiles
-            NodeList nodes = getElementsFromXML(MainPageController.getProfilesXmlFile());
+            NodeList nodes = getElementsFromXML(MainPageController.getProfilesPropertiesFile());
             for (int j = 0; j <= nodes.getLength() - 1; ++j) {                                      //for schleife hängt alle bereits in der datei existierenden Modpacks wieder an
                 Element e = doc.createElement("modpack");
                 e.setAttribute("name", nodes.item(j).getAttributes().getNamedItem("name").getTextContent());
@@ -81,7 +82,7 @@ public class ModPackManager {
             doc.appendChild(rootElement);                                                                                   //Hauptelement ans XML Dokument anhängen
 
             //re-add existing profiles except the one to delete
-            NodeList nodes = getElementsFromXML(MainPageController.getProfilesXmlFile());                                   //NodeList ist eine Liste an XML elementen, wie z.B unser <modpack> element
+            NodeList nodes = getElementsFromXML(MainPageController.getProfilesPropertiesFile());                                   //NodeList ist eine Liste an XML elementen, wie z.B unser <modpack> element
             for (int j = 0; j <= nodes.getLength() - 1; ++j) {                                                              // Die for schleife durchläuft alle <modpack> elemente im XML file
                 if(!nodes.item(j).getAttributes().getNamedItem("name").getTextContent().equals(profileName)) {              //in diesem if wird jedes XML Element (jedes Profil) wieder an das dokument angehängt
                     Element e = doc.createElement("modpack");                                                       //      ausser das zu löschende profil
