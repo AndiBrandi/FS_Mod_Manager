@@ -1,6 +1,5 @@
 package com.modmanager.fsmodmanager;
 
-import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -23,10 +22,6 @@ public class ModListPageController {
         refresh();
     }
 
-    public void refreshPressed(ActionEvent actionEvent) {
-        modListView.getItems().clear();
-        refresh();
-    }
 
     /**
      * refresh reads all mods in the modsfolder and count them
@@ -36,8 +31,8 @@ public class ModListPageController {
         modListView.getItems().clear();
         inactiveModListView.getItems().clear();
 
-        modsFolder = new File(MainPageController.getGameDirectory().getPath() + "\\mods");
-        inactiveModsFolder = new File(MainPageController.getGameDirectory().getPath() + "\\mods_inactive");
+        modsFolder = new File(MainPageController.getGameDirectoryFolder().getPath() + "\\mods");
+        inactiveModsFolder = new File(MainPageController.getGameDirectoryFolder().getPath() + "\\mods_inactive");
         File[] mods = modsFolder.listFiles();
         File[] inactiveMods = inactiveModsFolder.listFiles();
 

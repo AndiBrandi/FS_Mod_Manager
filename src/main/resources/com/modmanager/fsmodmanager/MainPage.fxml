@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -15,15 +14,15 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.modmanager.fsmodmanager.MainPageController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.modmanager.fsmodmanager.MainPageController">
     <children>
-        <Label layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="182.0" text="FS Mod Manager">
+        <Label layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="182.0" text="FS Mod Manager" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
             <font>
                 <Font size="20.0" />
             </font>
         </Label>
-        <Button fx:id="modListButton" layoutX="697.0" layoutY="57.0" mnemonicParsing="false" onAction="#modlistButtonPressed" text="Modlist" />
-        <Line endX="552.2928466796875" endY="-2.0711443424224854" layoutX="297.0" layoutY="102.0" startX="-297.0" startY="7.62939453125E-6" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+        <Button fx:id="modListButton" layoutX="488.0" layoutY="18.0" mnemonicParsing="false" onAction="#modlistButtonPressed" text="Modlist" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="18.0" />
+        <Line endX="343.29290771484375" endY="2.0711448192596436" layoutX="297.0" layoutY="102.0" startX="-297.0" startY="7.62939453125E-6" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
          <fill>
             <LinearGradient endX="1.0" endY="1.0" startX="0.24809159395348934" startY="0.27862599787821296">
                <stops>
@@ -41,25 +40,17 @@
                </stops>
             </LinearGradient>
          </stroke></Line>
-        <Button fx:id="settingsButton" layoutX="765.0" layoutY="57.0" mnemonicParsing="false" onAction="#settingsButtonPressed" text="Settings" />
-      <TextField fx:id="gameDirTextField" layoutX="295.0" layoutY="16.0" prefHeight="26.0" prefWidth="458.0" />
-      <Label layoutX="204.0" layoutY="20.0" text="Game Directory:" />
-      <Button fx:id="browseDirButton" layoutX="765.0" layoutY="16.0" mnemonicParsing="false" onAction="#browseClicked" prefHeight="26.0" prefWidth="59.0" text="Browse" />
-      <VBox layoutX="3.0" layoutY="99.0" prefHeight="430.0" prefWidth="234.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="100.0">
+        <Button fx:id="settingsButton" layoutX="563.0" layoutY="18.0" mnemonicParsing="false" onAction="#settingsButtonPressed" text="Settings" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="18.0" />
+      <VBox layoutX="3.0" layoutY="99.0" prefHeight="338.0" prefWidth="234.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="100.0">
          <children>
-            <HBox alignment="TOP_CENTER" prefHeight="30.0" prefWidth="210.0">
+            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="210.0">
                <children>
-                  <Label prefHeight="18.0" prefWidth="38.0" text="Search" HBox.hgrow="ALWAYS">
+                  <Label text="Modpacks:">
                      <HBox.margin>
-                        <Insets left="5.0" right="5.0" top="5.0" />
+                        <Insets right="20.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="searchField" prefHeight="26.0" prefWidth="150.0">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </TextField>
-                  <Button fx:id="addProfileButton" alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#newProfileClicked" prefHeight="26.0" prefWidth="35.0" text="+" HBox.hgrow="ALWAYS">
+                  <Button fx:id="addProfileButton" alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#newProfileClicked" prefHeight="26.0" prefWidth="121.0" text="New Modpack" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets left="5.0" right="5.0" />
                      </HBox.margin></Button>
@@ -82,7 +73,9 @@
                </VBox.margin></Button>
          </children>
       </VBox>
-      <ListView fx:id="modsLV" layoutX="271.0" layoutY="143.0" prefHeight="366.0" prefWidth="470.0" AnchorPane.topAnchor="140.0" />
-      <Button fx:id="loadProfileButton" layoutX="271.0" layoutY="109.0" mnemonicParsing="false" onAction="#loadProfileIntoGame" text="Load selected Profile" />
+      <ListView fx:id="modsLV" layoutX="271.0" layoutY="143.0" prefHeight="264.0" prefWidth="352.0" AnchorPane.leftAnchor="271.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="140.0" />
+      <Button fx:id="loadProfileButton" layoutX="271.0" layoutY="109.0" mnemonicParsing="false" onAction="#loadProfileIntoGame" text="Load selected Modpack" />
+      <Label layoutX="425.0" layoutY="113.0" prefHeight="18.0" prefWidth="95.0" text="Active Modpack:" AnchorPane.leftAnchor="425.0" AnchorPane.topAnchor="114.0" />
+      <Label fx:id="activeModpackLabel" layoutX="520.0" layoutY="114.0" prefHeight="18.0" prefWidth="103.0" AnchorPane.leftAnchor="519.8" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="114.0" />
     </children>
 </AnchorPane>
